@@ -1,7 +1,7 @@
 {
-  "name": "language-http",
-  "version": "0.0.9",
-  "description": "An HTTP Language Pack for OpenFn",
+  "name": "language-surveyCTO",
+  "version": "0.0.1",
+  "description": "A SurveyCTO Language Pack for OpenFn",
   "main": "lib/index.js",
   "scripts": {
     "build": "make",

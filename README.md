@@ -1,7 +1,8 @@
-Language HTTP
-=============
+Language SurveyCTO
+==================
 
-Language Pack for building expressions and operations to make HTTP calls.
+Language Pack for building expressions and operations to make HTTP calls to
+SurveyCTO.
 
 Documentation
 -------------

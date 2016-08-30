@@ -22,7 +22,7 @@
     "longname": "src/Adaptor.js~execute",
     "access": null,
     "export": true,
-    "importPath": "language-http/src/Adaptor.js",
+    "importPath": "language-surveyCTO/src/Adaptor.js",
     "importStyle": "{execute}",
     "description": "Execute a sequence of operations.\nWraps `language-common/execute`, and prepends initial state for http.",
     "examples": [
@@ -79,7 +79,7 @@
     "longname": "src/Adaptor.js~event",
     "access": null,
     "export": true,
-    "importPath": "language-http/src/Adaptor.js",
+    "importPath": "language-surveyCTO/src/Adaptor.js",
     "importStyle": "{event}",
     "description": "Create an event",
     "examples": [
@@ -141,7 +141,7 @@
     "longname": "src/Client.js~post",
     "access": null,
     "export": true,
-    "importPath": "language-http/src/Client.js",
+    "importPath": "language-surveyCTO/src/Client.js",
     "importStyle": "{post}",
     "description": null,
     "lineNumber": 3,

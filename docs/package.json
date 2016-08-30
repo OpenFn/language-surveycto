@@ -1,5 +1,5 @@
 {
-  "name": "language-http",
+  "name": "language-surveyCTO",
   "version": "0.0.1",
   "description": "http Language Pack for OpenFn",
   "main": "lib/index.js",
