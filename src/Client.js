@@ -16,7 +16,7 @@ export function clientPost({ username, password, body, url }) {
   })
 }
 
-export function getThenPost({ username, password, query, url, sendImmediately, postUrl }) {
+export function getThenPost({ username, password, query, url, postUrl }) {
   return new Promise((resolve, reject) => {
 
     request({
@@ -26,7 +26,7 @@ export function getThenPost({ username, password, query, url, sendImmediately, p
       'auth': {
         'user': username,
         'pass': password,
-        'sendImmediately': sendImmediately
+        'sendImmediately': false
       }
     }, function(error, response, getResponseBody){
       if ([200,201,202].indexOf(response.statusCode) == -1 || error) {

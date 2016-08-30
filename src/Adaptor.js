@@ -39,26 +39,35 @@ export function execute(...operations) {
  * @param {object} params - data to make the fetch
  * @returns {Operation}
  */
-export function fetch(params) {
+export function fetchSubmissions(formId, afterDate, postUrl) {
+
+  // GET IT BACK INTO STATE!
+  //   function(state) {
+  //       return { "date": dataValue("_json[(@.length-1)].SubmissionDate")(state) }
+  //   }
 
   return state => {
 
-    const { getEndpoint, query, postUrl } = expandReferences(params)(state);
+    const { afterDate } = expandReferences(afterDate)(state);
 
-    const { username, password, baseUrl, authType } = state.configuration;
+    const { username, password, instanceName } = state.configuration;
 
-    var sendImmediately = authType == 'digest' ? false : true;
+    const baseUrl = "https://".concat(instanceName, ".surveycto.com/api/v1/forms/data/wide/json")
 
-    const url = resolveUrl(baseUrl + '/', getEndpoint)
+    const url = resolveUrl(baseUrl + '/', formId)
 
-    console.log("Fetching data from URL: " + url);
-    console.log("Applying query: " + JSON.stringify(query))
+    console.log("Fetching submissions from URL: " + url);
+    console.log("After: " + afterDate)
 
-    return getThenPost({ username, password, query, url, sendImmediately, postUrl })
-    .then((response) => {
+    return getThenPost({
+      username, password, query, url, sendImmediately, postUrl
+    }).then((response) => {
       console.log("Success:", response);
-      let result = (typeof response === 'object') ? response : JSON.parse(response);
-      return { ...state, references: [ result, ...state.references ] }
+      var submissions = response.body;
+      if (submissions.length) {
+        state.lastSubmissionDate = submissions[submissions.length-1].SubmissionDate
+      }
+      return state
     })
 
   }
@@ -97,7 +106,7 @@ export function post(url, {body, callback}) {
     })
 
   }
-} 
+}
 
 /**
  * Make a GET request

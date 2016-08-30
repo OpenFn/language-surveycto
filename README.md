@@ -6,27 +6,25 @@ SurveyCTO.
 
 Documentation
 -------------
-## Fetch
+## fetchSubmissions
 
 #### sample configuration
 ```js
 {
   "username": "taylor@openfn.org",
   "password": "supersecret",
-  "baseUrl": "https://instance_name.surveycto.com",
-  "authType": "digest"
+  "instanceName": "openfn_test"
 }
 ```
 
-#### sample fetch expression
+### sample fetchSubmissions(formId, afterDate, postUrl) expression
+
 ```js
-fetch({
-  "getEndpoint": "api/v1/forms/data/wide/json/mod_coach",
-  "query": function(state) {
-      return { "date": dataValue("_json[(@.length-1)].SubmissionDate")(state) }
-  },
-  "postUrl": "http://localhost:4000/inbox/8ad63a29-5c25-4d8d-ba2c-fe6274dcfbab",
-})
+fetchSubmissions(
+  "household_survey",
+  sourceValue("$.lastSubmissionDate") || "Aug 29, 2016 4:44:26 PM",
+  "https://www.openfn.org/inbox/secret-inbox-uuid"
+)
 ```
 
 [Docs](docs/index)
