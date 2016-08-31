@@ -1,5 +1,5 @@
 {
-  "name": "language-surveyCTO",
+  "name": "language-surveycto",
   "version": "0.0.1",
   "description": "A SurveyCTO Language Pack for OpenFn",
   "main": "lib/index.js",
