@@ -1,5 +1,4 @@
 import { execute as commonExecute, expandReferences } from 'language-common';
-import { getThenPost, clientPost } from './Client';
 import request from 'request'
 import { resolve as resolveUrl } from 'url';
 
@@ -59,15 +58,38 @@ export function fetchSubmissions(formId, afterDate, postUrl) {
     console.log("Fetching submissions from URL: " + url);
     console.log("After: " + afterDate)
 
-    return getThenPost({
-      username, password, query, url, sendImmediately, postUrl
-    }).then((response) => {
-      console.log("Success:", response);
-      var submissions = response.body;
-      if (submissions.length) {
-        state.lastSubmissionDate = submissions[submissions.length-1].SubmissionDate
-      }
-      return state
+    return new Promise((resolve, reject) => {
+
+      request({
+        url: url, //URL to hit
+        method: 'GET', //Specify the method
+        'auth': {
+          'user': username,
+          'pass': password,
+          'sendImmediately': false
+        }
+      }, function(error, response, getResponseBody){
+        if ([200,201,202].indexOf(response.statusCode) == -1 || error) {
+          console.log("GET failed.");
+          // TODO: construct a useful error message, request returns a blank
+          // error when the server responds, and the response object is massive
+          // and unserializable.
+          reject(error);
+        } else {
+          console.log("GET succeeded.");
+          request.post ({
+            url: postUrl,
+            json: JSON.parse(getResponseBody)
+          }, function(error, response, postResponseBody){
+            if(error) {
+              reject(error);
+            } else {
+              console.log("POST succeeded.");
+              resolve(getResponseBody);
+            }
+          })
+        }
+      });
     })
 
   }
