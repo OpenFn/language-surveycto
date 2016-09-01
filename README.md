@@ -24,7 +24,7 @@ Documentation
 }
 ```
 
-### sample fetchSubmissions expression
+### sample `fetchSubmissions` expression
 
 ```js
 fetchSubmissions(
