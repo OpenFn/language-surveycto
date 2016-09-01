@@ -21,8 +21,11 @@ Documentation
 
 ```js
 fetchSubmissions(
+  // formId on SurveyCTO server
   "household_survey",
-  sourceValue("$.lastSubmissionDate") || "Aug 29, 2016 4:44:26 PM",
+  // afterDate (this will only be accessed if "lastSubmissionDate" is empty in your job_state")
+  "Aug 29, 2016 4:44:26 PM",
+  // postUrl is where you want to send the JSON submissions, appended with a new "formId" key
   "https://www.openfn.org/inbox/secret-inbox-uuid"
 )
 ```
