@@ -44,7 +44,7 @@ export function execute(...operations) {
 export function fetchSubmissions(formId, afterDate, postUrl) {
   return get(`forms/data/wide/json/${ formId }`, {
     query: function(state) {
-      console.log(state.configuration.baseUrl)
+      console.log("baseUrl: ".concat(state.configuration.baseUrl))
       return { date: state.lastSubmissionDate || afterDate }
     },
     callback: function(state) {
@@ -66,6 +66,7 @@ export function fetchSubmissions(formId, afterDate, postUrl) {
         })
         .then(function(state) {
           delete state.response
+          console.log("fetchSubmissions succeeded.")
           return state;
         })
     }
