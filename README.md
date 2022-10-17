@@ -6,6 +6,17 @@ SurveyCTO.
 
 Documentation
 -------------
+
+## sample configuration
+
+```js
+{
+  "username": "taylor@openfn.org",
+  "password": "supersecret",
+  "instanceName": "openfn_test"
+}
+```
+
 ## fetchSubmissions
 `fetchSubmissions(1,2,3)` takes three arguments:
 
@@ -14,15 +25,6 @@ Documentation
 2. the `initialAfterDate`, a date string or UNIX timestamp which instructs the job to only fetch submissions after a certain date. After the first run of the job, subsequent runs will only fetch *NEW* submissions.
 
 3. the `postUrl` is where the wide-format JSON representation of each form submission should be sent. Note that a `formId` key will be added to each form submission for later filtering/routing.
-
-#### sample configuration
-```js
-{
-  "username": "taylor@openfn.org",
-  "password": "supersecret",
-  "instanceName": "openfn_test"
-}
-```
 
 ### sample `fetchSubmissions` expression
 
